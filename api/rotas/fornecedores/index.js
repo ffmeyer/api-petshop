@@ -11,7 +11,6 @@ roteador.get('/', async (requisicao, resposta) => {
 
 roteador.post('/', async (requisicao, resposta) => {
     const dadosRecebidos = requisicao.body
-    console.log(dadosRecebidos)
     const fornecedor = new Fornecedor(dadosRecebidos)
     await fornecedor.criar()
     resposta.send(
@@ -19,6 +18,19 @@ roteador.post('/', async (requisicao, resposta) => {
     )
 })
 
+roteador.get('/:idFornecedor', async (requisicao, resposta) => {
+    try {
+        const id = requisicao.params.idFornecedor
+        const fornecedor = new Fornecedor({ id: id })
+        await fornecedor.carregar()
+        resposta.send(
+            JSON.stringify(fornecedor)
+        )
+    }  catch (erro) {
+        resposta.send(
+            JSON.stringify({mensagem: erro.mensagem})
+        )
+    }
+})
 
 module.exports = roteador
-
