@@ -28,7 +28,7 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
         )
     }  catch (erro) {
         resposta.send(
-            JSON.stringify({mensagem: erro.mensagem})
+            JSON.stringify({mensagem: erro.message})
         )
     }
 })
