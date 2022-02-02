@@ -3,6 +3,7 @@ const TabelaFornecedor = require('./tabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
 const req = require('express/lib/request')
 const res = require('express/lib/response')
+const NaoEncontrado = require('../../Erros/NaoEncontrado')
 
 roteador.get('/', async (requisicao, resposta) => {
     const resultados = await TabelaFornecedor.listar()
@@ -49,7 +50,7 @@ roteador.get('/:idFornecedor', async (requisicao, resposta) => {
 })
 
 
-roteador.put('/:idFornecedor', async (requisicao, resposta) => {
+roteador.put('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try {
         const id = requisicao.params.idFornecedor
         const dadosRecebidos = requisicao.body
@@ -58,11 +59,8 @@ roteador.put('/:idFornecedor', async (requisicao, resposta) => {
         await fornecedor.atualizar()
         resposta.status(204)
         resposta.end()
-    } catch (erro) {
-        resposta.status(400)
-        resposta.send(
-            JSON.stringify({ mensagem: erro.message })
-        )
+    } catch (erro) {        
+        proximo(erro)
     }
 })
 
