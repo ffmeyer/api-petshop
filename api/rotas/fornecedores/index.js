@@ -42,7 +42,7 @@ roteador.put('/:idFornecedor', async (requisicao, resposta) => {
         const fornecedor = new Fornecedor(dados)
         await fornecedor.atualizar()
         resposta.end()
-    } catch (error) {
+    } catch (erro) {
         resposta.send(
             JSON.stringify({ mensagem: erro.message })
         )
