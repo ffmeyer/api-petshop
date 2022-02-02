@@ -2,23 +2,33 @@ const Modelo = require('./ModeloTabelaFornecedor')
 
 
 module.exports = {
-    listar(){
+    listar() {
         return Modelo.findAll()
-    }, 
+    },
 
-    inserir(fornecedor){
+    inserir(fornecedor) {
         return Modelo.create(fornecedor)
     },
 
-    async pegarPorId (id){
+    async pegarPorId(id) {
         const encontrado = await Modelo.findOne({
             where: {
-                id : id
+                id: id
             }
-        })     
-        if(!encontrado){
+        })
+        if (!encontrado) {
             throw new Error('fornecedor nao encontrado')
         }
         return encontrado
+    },
+
+    atualizar(id, dadosParaAtualizar) {
+        return Modelo.update(
+            dadosParaAtualizar,
+            {
+                where: { id: id }
+            }
+        )
     }
+
 }
