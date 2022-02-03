@@ -6,14 +6,34 @@ const NaoEncontrado = require('./Erros/NaoEncontrado')
 const CampoInvalido = require('./Erros/CampoInvalido')
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos')
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
+const formatosAceitos = require('./Serializador').formatosAceitos
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use((requisicao, resposta, proximo) => {
+    let formatoRequisitado = requisicao.header('Accept')
+
+    if(formatoRequisitado === '*/*'){
+        formatoRequisitado = 'application/json'
+    }
+
+    if (formatosAceitos.indexOf(formatoRequisitado) === -1)  {
+        resposta.status(406)
+        resposta.end()
+    }
+
+    resposta.setHeader('Content-Type',formatoRequisitado)
+    proximo()
+})
+
 
 
 
 const roteador = require('./rotas/fornecedores')
 const { status } = require('express/lib/response')
+const res = require('express/lib/response')
 
 
 app.use('/api/fornecedores', roteador)
@@ -28,7 +48,7 @@ app.use((erro, requisicao, resposta, proximo ) => {
         status = 400
     }
 
-    if (erro instanceof ValorNaoSuportado){
+    if (erro instanceof ValorNaoSuportado ){
         status = 406
     } 
 

@@ -1,7 +1,7 @@
 const ValorNaoSuportado = require('./Erros/ValorNaoSuportado')
 
 class Serializador {
-    json(){
+    json(dados){
         return JSON.stringify(dados)
     }
 
@@ -10,7 +10,22 @@ class Serializador {
             return this.json(dados)
         }
         throw new ValorNaoSuportado(this.contentType)
-    }
+        
+        }
 }
 
-module.exports = Serializador
+class SerializadorFornecedor extends Serializador {
+    constructor(contentType){
+        super()
+        this.contentType = contentType
+
+    }
+
+}
+
+
+module.exports =  {
+    Serializador: Serializador, 
+    SerializadorFornecedor: SerializadorFornecedor, 
+    formatosAceitos: ['application/json']
+}

@@ -5,3 +5,5 @@ class ValorNaoSuportado extends Error {
         this.idErro = 3
     }
 }
+
+module.exports =  ValorNaoSuportado
