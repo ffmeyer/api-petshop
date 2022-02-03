@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "e59960fb-594b-43c0-95e9-96eee04fbcfe",
+		"name": "alura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "nodejs-api-rest",
+			"item": [
+				{
+					"name": "atendimento",
+					"item": [
+						{
+							"name": "get - atendimento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/atendimentos",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"atendimentos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get - atendimento by id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "localhost:3000/atendimentos/34",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"atendimentos",
+										"34"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post - atendimentos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cliente\": \"10020030021\",\r\n    \"pet\": \"gato felix\",\r\n    \"servico\": \"banho\",\r\n    \"status\": \"agendado\",\r\n    \"observacoes\": \"nao mexa na flor\",\r\n    \"data\": \"30/12/2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/atendimentos",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"atendimentos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patch- atendimento",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "cliente",
+											"value": "eita porra",
+											"type": "text"
+										},
+										{
+											"key": "pet",
+											"value": "tigreson",
+											"type": "text"
+										},
+										{
+											"key": "servico",
+											"value": "banho",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "agendado",
+											"type": "text"
+										},
+										{
+											"key": "observacoes",
+											"value": "nao mexa na flor",
+											"type": "text"
+										},
+										{
+											"key": "data",
+											"value": "29/01/2022",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/atendimentos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"atendimentos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete - atendimento by id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "localhost:3000/atendimentos/4",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"atendimentos",
+										"4"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "pet",
+					"item": [
+						{
+							"name": "put - pet",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Iggy\", \r\n    \"imagem\": \"./assets/iggy.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/pet",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"pet"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cliente",
+					"item": [
+						{
+							"name": "get - cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/1111111111111111",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"1111111111111111"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "api-petshop",
+			"item": [
+				{
+					"name": "get - fornecedores",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/fornecedores/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fornecedores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get - fornecedores by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/fornecedores/999",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fornecedores",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post - fornecedor",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"empresa\": \" alura racao para gatos\",\r\n    \"email\": \"vendas@alura.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/fornecedores",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fornecedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put - fornecedor by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"empresa\": \"6 racao pra gatos de outro tipo\",\r\n    \"email\": \"vendas@alura.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/fornecedores/26",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fornecedores",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get - fornecedores by id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/fornecedores/27",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"fornecedores",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
