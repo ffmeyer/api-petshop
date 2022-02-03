@@ -7,6 +7,7 @@ const CampoInvalido = require('./Erros/CampoInvalido')
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos')
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
 const formatosAceitos = require('./Serializador').formatosAceitos
+const Serializador = require('./Serializador').SerializadorErro
 
 
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use((requisicao, resposta, proximo) => {
 const roteador = require('./rotas/fornecedores')
 const { status } = require('express/lib/response')
 const res = require('express/lib/response')
+const { SerializadorErro } = require('./Serializador')
 
 
 app.use('/api/fornecedores', roteador)
@@ -51,11 +53,14 @@ app.use((erro, requisicao, resposta, proximo ) => {
     if (erro instanceof ValorNaoSuportado ){
         status = 406
     } 
-
+    const serializador = new SerializadorErro(
+        resposta.getHeader('Content-type')
+    )
+    
     resposta.status(status)
 
     resposta.send(
-        JSON.stringify({ 
+        serializador.serializar({ 
             mensagem: erro.message,
             id: erro.idErro
         })
