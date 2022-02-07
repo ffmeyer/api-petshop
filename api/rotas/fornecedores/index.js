@@ -81,12 +81,12 @@ const roteadorProdutos = require('./produtos')
 const verificarFornecedor = async (requisicao, resposta, proximo) => {
     try {
         const id = requisicao.params.idFornecedor
-        const fornecedor = new Fornecedor ({ id: id })
+        const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
         requisicao.fornecedor = fornecedor
-	proximo()
+        proximo()
     } catch (erro) {
-        proximo (erro)        
+        proximo(erro)
     }
 }
 

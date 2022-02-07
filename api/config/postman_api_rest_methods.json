@@ -236,157 +236,382 @@
 			"name": "api-petshop",
 			"item": [
 				{
-					"name": "get - fornecedores",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/api/fornecedores/",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fornecedores",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get - fornecedores by id",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "localhost:3000/api/fornecedores/999",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fornecedores",
-								"999"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post - fornecedor",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"empresa\": \" alura racao para gatos\",\r\n    \"email\": \"vendas@alura.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "fornecedores",
+					"item": [
+						{
+							"name": "get - fornecedores",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
 								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/fornecedores",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fornecedores"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "put - fornecedor by id",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"empresa\": \"6 racao pra gatos de outro tipo\",\r\n    \"email\": \"vendas@alura.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/fornecedores/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"fornecedores",
+										""
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "localhost:3000/api/fornecedores/26",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fornecedores",
-								"26"
-							]
+						{
+							"name": "get - fornecedores by id",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:3000/api/fornecedores/42",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"fornecedores",
+										"42"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post - fornecedor",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"empresa\": \"Empresa e2\",\r\n    \"email\": \"emailEmpresaE@empresaE.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/fornecedores",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"fornecedores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put - fornecedor by id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"empresa\": \"Empresa F\",\r\n    \"email\": \"emailEmpresaF@empresaF.com.br\",\r\n    \"categoria\": \"racao\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/fornecedores/42",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"fornecedores",
+										"42"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get - fornecedores by id",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/fornecedores/42",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"fornecedores",
+										"42"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "get - fornecedores by id",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/fornecedores/27",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"fornecedores",
-								"27"
+					"name": "produtos",
+					"item": [
+						{
+							"name": "crud",
+							"item": [
+								{
+									"name": "get - forn + produtos",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/38/produtos",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"38",
+												"produtos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get - forn + produtos by id",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/38/produtos/16",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"38",
+												"produtos",
+												"16"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "post forn - produtos",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"titulo\": \"bolinha de brinquedo para caes\",\r\n    \"preco\": 19.99,\r\n    \"estoque\": 50\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/38/produtos",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"38",
+												"produtos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put - forn + produtos",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"titulo\": \"freesbie para caes\",\r\n    \"preco\": 9.99,\r\n    \"estoque\": 50\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/38/produtos/6",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"38",
+												"produtos",
+												"6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "del forn + produtos by id",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/1/produtos/9",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"1",
+												"produtos",
+												"9"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "actions",
+							"item": [
+								{
+									"name": "diminuir estoque",
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"estoque\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/api/fornecedores/38/produtos/16/diminuir-estoque",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"fornecedores",
+												"38",
+												"produtos",
+												"16",
+												"diminuir-estoque"
+											]
+										}
+									},
+									"response": []
+								}
 							]
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}

@@ -22,7 +22,7 @@ app.use((requisicao, resposta, proximo) => {
     if (formatosAceitos.indexOf(formatoRequisitado) === -1) {
         resposta.status(406)
         resposta.end()
-	return
+        return
     }
 
     resposta.setHeader('Content-Type', formatoRequisitado)
