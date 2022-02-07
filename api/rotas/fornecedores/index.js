@@ -3,12 +3,11 @@ const TabelaFornecedor = require('./tabelaFornecedor')
 const Fornecedor = require('./Fornecedor')
 const SerializadorFornecedor = require('../../Serializador').SerializadorFornecedor
 
-
 roteador.get('/', async (requisicao, resposta) => {
     const resultados = await TabelaFornecedor.listar()
     resposta.status(200)
     const serializador = new SerializadorFornecedor(
-        resposta.getHeader('Content-type')
+        resposta.getHeader('Content-Type')
     )
     resposta.send(
         serializador.serializar(resultados)
@@ -21,35 +20,34 @@ roteador.post('/', async (requisicao, resposta, proximo) => {
         const fornecedor = new Fornecedor(dadosRecebidos)
         await fornecedor.criar()
         resposta.status(201)
-        const Serializador = new SerializadorFornecedor(
-            resposta.getHeader('Content-type')
-        )    
+        const serializador = new SerializadorFornecedor(
+            resposta.getHeader('Content-Type')
+        )
         resposta.send(
-            Serializador.serializar(fornecedor)
+            serializador.serializar(fornecedor)
         )
     } catch (erro) {
         proximo(erro)
     }
 })
 
-roteador.get('/:idFornecedor', async (requisicao, resposta, proxixo) => {
+roteador.get('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try {
         const id = requisicao.params.idFornecedor
         const fornecedor = new Fornecedor({ id: id })
         await fornecedor.carregar()
-        const Serializador = new SerializadorFornecedor(
-            resposta.getHeader('Content-type'),
-            ['email', 'dataCriacao', 'dataAtualizacao','versao']
-        )    
         resposta.status(200)
+        const serializador = new SerializadorFornecedor(
+            resposta.getHeader('Content-Type'),
+            ['email', 'dataCriacao', 'dataAtualizacao', 'versao']
+        )
         resposta.send(
-            Serializador.serializar(fornecedor)
+            serializador.serializar(fornecedor)
         )
     } catch (erro) {
-        proxixo(erro)
+        proximo(erro)
     }
 })
-
 
 roteador.put('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try {
@@ -60,11 +58,10 @@ roteador.put('/:idFornecedor', async (requisicao, resposta, proximo) => {
         await fornecedor.atualizar()
         resposta.status(204)
         resposta.end()
-    } catch (erro) {        
+    } catch (erro) {
         proximo(erro)
     }
 })
-
 
 roteador.delete('/:idFornecedor', async (requisicao, resposta, proximo) => {
     try {
@@ -75,11 +72,24 @@ roteador.delete('/:idFornecedor', async (requisicao, resposta, proximo) => {
         resposta.status(204)
         resposta.end()
     } catch (erro) {
-        proximo(erro)  
+        proximo(erro)
     }
 })
 
 const roteadorProdutos = require('./produtos')
-roteador.use('/:idFornecedor/produtos', roteadorProdutos)
+
+const verificarFornecedor = async (requisicao, resposta, proximo) => {
+    try {
+        const id = requisicao.params.idFornecedor
+        const fornecedor = new Fornecedor ({ id: id })
+        await fornecedor.carregar()
+        requisicao.fornecedor = fornecedor
+	proximo()
+    } catch (erro) {
+        proximo (erro)        
+    }
+}
+
+roteador.use('/:idFornecedor/produtos', verificarFornecedor, roteadorProdutos)
 
 module.exports = roteador

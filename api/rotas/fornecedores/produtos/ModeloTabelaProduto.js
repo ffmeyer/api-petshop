@@ -1,5 +1,6 @@
 const Sequelize = require ('Sequelize')
-const instancia = require ('../../../banco-de-dados')
+const instancia = require('../../../banco-de-dados')
+
 const colunas = {
     titulo: {
         type: Sequelize.STRING,
@@ -15,13 +16,12 @@ const colunas = {
         defaultValue: 0
     },
     fornecedor: {
-        type: Sequelize.INTEGER, 
-        allowNull: false, 
+        type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-            model: require('../ModeloTabelaFornecedor'), 
+            model: require('../ModeloTabelaFornecedor'),
             key: 'id'
         }
-        
     }
 }
 
@@ -32,7 +32,6 @@ const opcoes = {
     createdAt: 'dataCriacao',
     updatedAt: 'dataAtualizacao',
     version: 'versao'
+}
 
-} 
-
-module.exports = instancia.define('produto', colunas, opcoes, opcoes)
+module.exports = instancia.define('produto', colunas, opcoes)

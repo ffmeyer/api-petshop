@@ -2,7 +2,6 @@ const TabelaFornecedor = require('./TabelaFornecedor')
 const CampoInvalido = require('../../erros/CampoInvalido')
 const DadosNaoFornecidos = require('../../erros/DadosNaoFornecidos')
 
-
 class Fornecedor {
     constructor({ id, empresa, email, categoria, dataCriacao, dataAtualizacao, versao }) {
         this.id = id
@@ -14,7 +13,7 @@ class Fornecedor {
         this.versao = versao
     }
 
-    async criar() {
+    async criar () {
         this.validar()
         const resultado = await TabelaFornecedor.inserir({
             empresa: this.empresa,
@@ -28,7 +27,7 @@ class Fornecedor {
         this.versao = resultado.versao
     }
 
-    async carregar() {
+    async carregar () {
         const encontrado = await TabelaFornecedor.pegarPorId(this.id)
         this.empresa = encontrado.empresa
         this.email = encontrado.email
@@ -38,13 +37,14 @@ class Fornecedor {
         this.versao = encontrado.versao
     }
 
-    async atualizar() {
+    async atualizar () {
         await TabelaFornecedor.pegarPorId(this.id)
         const campos = ['empresa', 'email', 'categoria']
         const dadosParaAtualizar = {}
 
         campos.forEach((campo) => {
             const valor = this[campo]
+
             if (typeof valor === 'string' && valor.length > 0) {
                 dadosParaAtualizar[campo] = valor
             }
@@ -55,18 +55,18 @@ class Fornecedor {
         }
 
         await TabelaFornecedor.atualizar(this.id, dadosParaAtualizar)
-
     }
 
-    remover(){
+    remover () {
         return TabelaFornecedor.remover(this.id)
     }
 
-    validar(){
-        const campos = ['empresa','email','categoria']
+    validar () {
+        const campos = ['empresa', 'email', 'categoria']
+
         campos.forEach(campo => {
             const valor = this[campo] 
-            if (typeof valor !== 'string' || valor.length === 0 ) {
+            if (typeof valor !== 'string' || valor.length === 0) {
                 throw new CampoInvalido (campo)
             }
         })

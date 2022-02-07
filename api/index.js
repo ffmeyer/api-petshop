@@ -7,60 +7,52 @@ const CampoInvalido = require('./Erros/CampoInvalido')
 const DadosNaoFornecidos = require('./erros/DadosNaoFornecidos')
 const ValorNaoSuportado = require('./erros/ValorNaoSuportado')
 const formatosAceitos = require('./Serializador').formatosAceitos
-const Serializador = require('./Serializador').SerializadorErro
+const SerializadorErro = require('./Serializador').SerializadorErro
 
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use((requisicao, resposta, proximo) => {
     let formatoRequisitado = requisicao.header('Accept')
 
-    if(formatoRequisitado === '*/*'){
+    if (formatoRequisitado === '*/*') {
         formatoRequisitado = 'application/json'
     }
 
-    if (formatosAceitos.indexOf(formatoRequisitado) === -1)  {
+    if (formatosAceitos.indexOf(formatoRequisitado) === -1) {
         resposta.status(406)
         resposta.end()
+	return
     }
 
-    resposta.setHeader('Content-Type',formatoRequisitado)
+    resposta.setHeader('Content-Type', formatoRequisitado)
     proximo()
 })
 
-
-
-
 const roteador = require('./rotas/fornecedores')
-const { status } = require('express/lib/response')
-const res = require('express/lib/response')
-const { SerializadorErro } = require('./Serializador')
-
-
 app.use('/api/fornecedores', roteador)
 
-app.use((erro, requisicao, resposta, proximo ) => {
+app.use((erro, requisicao, resposta, proximo) => {
     let status = 500
-    if (erro instanceof NaoEncontrado){
+
+    if (erro instanceof NaoEncontrado) {
         status = 404
-    } 
-    
-    if (erro instanceof CampoInvalido || erro instanceof DadosNaoFornecidos ){
+    }
+
+    if (erro instanceof CampoInvalido || erro instanceof DadosNaoFornecidos) {
         status = 400
     }
 
-    if (erro instanceof ValorNaoSuportado ){
+    if (erro instanceof ValorNaoSuportado) {
         status = 406
-    } 
-    const serializador = new SerializadorErro(
-        resposta.getHeader('Content-type')
-    )
-    
-    resposta.status(status)
+    }
 
+    const serializador = new SerializadorErro(
+        resposta.getHeader('Content-Type')
+    )
+    resposta.status(status)
     resposta.send(
-        serializador.serializar({ 
+        serializador.serializar({
             mensagem: erro.message,
             id: erro.idErro
         })
